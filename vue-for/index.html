@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-for</title>
+	<script type="text/javascript" src="../asserts/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="(item, index) in items" :key="index">
+				{{item.message}}
+			</li>
+		</ul>
+		<hr>
+		<ul>
+			<li v-for="(value, key) in obj" :key="key">
+				{{key + ':' + value}}
+			</li>
+		</ul>
+		<hr>
+		<ul>
+			<li v-for="item in items" v-if="item.message.length > 0">
+				{{item.message}}
+			</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	var vue = new Vue({
+		el: '#app',
+		data: {
+			items: [
+				{message: 'Foo'},
+				{message: 'Bar'},
+				{message: 'Car'},
+				{message: ''}
+			],
+			obj: {
+				name: 'sb',
+				age: 14
+			}
+		}
+	});
+</script>
+</html>
