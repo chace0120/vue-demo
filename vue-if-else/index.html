@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-if-else</title>
+	<script type="text/javascript" src="../asserts/vue.js"></script> 
+</head>
+<body>
+	<div id="app">
+		<p v-if="result == 1">
+			Result is one !
+		</p>
+		<p v-else-if="result == 2">
+			Result is two !
+		</p>
+		<p v-else>
+			Result is three !
+		</p>
+		<template v-if="emailForLogin">
+			<label for="email">Email:</label>
+			<input type="text" id="email" name="email" placeholder="请输入邮箱地址" key="emailType">
+		</template>
+		<template v-else>
+			<label for="Username">Username:</label>
+			<input type="text" id="username" name="username" placeholder="请输入用户名" key="usernameType">
+		</template>
+		<button @click="toogle">Toogle login type</button>
+		<p v-show="isShown">
+			This is v-show !
+		</p>
+	</div>	
+</body>
+<script type="text/javascript">
+	var vue = new Vue({
+	el: "#app",
+	  data: {
+		result: 1,
+		emailForLogin: false,
+		isShown: false
+	  },
+	  methods: {
+	  	toogle: function(event) {
+	  		this.emailForLogin = this.emailForLogin ? false : true;
+	  	}
+	  }
+	});
+</script>
+</html>
