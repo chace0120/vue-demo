@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-form</title>
+	<script type="text/javascript" src="../asserts/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>输入框</h1>
+		<hr>
+		<h1>文本框</h1>
+		<hr>
+		<h1>复选框</h1>
+		<hr>
+		<h1>单选框</h1>
+		<hr>
+		<h1>选择列表</h1>
+		<hr>
+		<h1>多选列表</h1>
+		<hr>
+		<h1>复选框-动态值</h1>
+		<hr>
+		<h1>单选框-动态值</h1>
+		<hr>
+		<h1>选择列表-动态值</h1>
+		<hr>
+	</div>
+</body>
+<script type="text/javascript">
+	var vue = new Vue({
+		el: '#app',
+		data: {
+			items: [
+				{message: 'Foo'},
+				{message: 'Bar'},
+				{message: 'Car'},
+				{message: ''}
+			],
+			obj: {
+				name: 'sb',
+				age: 14
+			}
+		}
+	});
+</script>
+</html>
