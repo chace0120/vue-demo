@@ -8,10 +8,31 @@
 <body>
 	<div id="app">
 		<h1>输入框</h1>
+		<div>
+			<input type="text" v-model="message" placeholder="leave your word">
+			<p>Message: {{message == "" ? "--" : message}}</p>
+		</div>
 		<hr>
-		<h1>文本框</h1>
+		<h1>文本域</h1>
+		<div>
+			<textarea v-model="message" placeholder="add multiple lines"></textarea>
+			<p>Multiline Message: </p>
+			<p style="white-space: pre-line;">{{message == "" ? "--" : message}}</p>
+		</div>
 		<hr>
 		<h1>复选框</h1>
+		<div>
+			<input id="readResult" type="checkbox" v-model="readResult">
+			<label for="readResult">已认真阅读协议说明</label>
+			<p>是否已阅读协议: {{readResult}}</p>
+		</div>
+		<div>
+			<input id="basketball" type="checkbox" value="basketball" v-model="choosedSports">
+			<label for="basketball">Basketball</label>
+			<input id="football" type="checkbox" value="football" v-model="choosedSports">
+			<label for="football">Football</label>
+			<p>Choosed Sports: {{choosedSports}}</p>
+		</div>
 		<hr>
 		<h1>单选框</h1>
 		<hr>
@@ -31,16 +52,9 @@
 	var vue = new Vue({
 		el: '#app',
 		data: {
-			items: [
-				{message: 'Foo'},
-				{message: 'Bar'},
-				{message: 'Car'},
-				{message: ''}
-			],
-			obj: {
-				name: 'sb',
-				age: 14
-			}
+			message: "",
+			readResult: false,
+			choosedSports: ['basketball']
 		}
 	});
 </script>
