@@ -35,6 +35,13 @@
 		</div>
 		<hr>
 		<h1>单选框</h1>
+		<div>
+			<input type="radio" id="male" value="male" v-model="sex">
+			<label for="male">男</label>
+			<input type="radio" id="woman" value="woman" v-model="sex">
+			<label for="woman">女</label>
+			<p>Sex: {{sex}}</p>
+		</div>
 		<hr>
 		<h1>选择列表</h1>
 		<hr>
@@ -54,7 +61,8 @@
 		data: {
 			message: "",
 			readResult: false,
-			choosedSports: ['basketball']
+			choosedSports: ['basketball'],
+			sex: ""
 		}
 	});
 </script>
