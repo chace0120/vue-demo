@@ -44,15 +44,53 @@
 		</div>
 		<hr>
 		<h1>选择列表</h1>
+		<div>
+			<select v-model="selected">
+				<option disabled value="">请选择</option>
+				<option value="Beijing">北京市</option>
+				<option value="Shanghai">上海市</option>
+				<option value="Chengdu">成都市</option>
+			</select>
+			<p>选择的城市: {{selected}}</p>
+		</div>
 		<hr>
 		<h1>多选列表</h1>
+			<select multiple style="width: 60px;" v-model="selectedCities">
+				<option value="Beijing">北京市</option>
+				<option value="Shanghai">上海市</option>
+				<option value="Chengdu">成都市</option>
+			</select>
+			<p>选择的城市: {{selectedCities}}</p>
 		<hr>
 		<h1>复选框-动态值</h1>
+		<div>
+			<!--
+				通过v-bind绑定vue实例的动态属性时，修改对应属性值，不会影响到v-model绑定属性的显示结果
+			-->
+			<input id="readResults" type="checkbox" v-model="multiReadResult" :true-value="readResults.yes" :false-value="readResults.no">
+			<label for="readResults">已认真阅读协议说明</label>
+			<p>是否已阅读协议: {{multiReadResult}}</p>
+		</div>
 		<hr>
 		<h1>单选框-动态值</h1>
+		<div>
+			<input type="radio" id="maleItem" :value="sexArr[0]" v-model="sexResult">
+			<label for="maleItem">男</label>
+			<input type="radio" id="womanItem" :value="sexArr[1]" v-model="sexResult">
+			<label for="womanItem">女</label>
+			<p>Sex: {{sexResult}}</p>
+		</div>
 		<hr>
 		<h1>选择列表-动态值</h1>
-		<hr>
+		<div>
+			<select v-model="selectedResult">
+				<option disabled value="--">请选择</option>
+				<option :value="cities[0]">北京市</option>
+				<option :value="cities[1]">上海市</option>
+				<option :value="cities[2]">成都市</option>
+			</select>
+			<p>选择的城市: {{selectedResult}}</p>
+		</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -62,7 +100,15 @@
 			message: "",
 			readResult: false,
 			choosedSports: ['basketball'],
-			sex: ""
+			sex: "", 
+			selected: "",
+			selectedCities: [], 
+			multiReadResult: "",
+			readResults: {yes: "是的，我阅读过了", no: "我还没读过"},
+			sexArr: ['male', 'woman'],
+			sexResult: '--',
+			cities: ['Beijing', 'Shanghai', 'Chengdu'],
+			selectedResult: '--'
 		}
 	});
 </script>
