@@ -7,13 +7,15 @@
 </head>
 <body>
 	<div id="app">
+		<comp-show></comp-show>
 	</div>
 </body>
 <script type="text/javascript">
+	Vue.component("comp-show", {
+		template: '<div>A custom component!</div>'
+	});
 	var vue = new Vue({
-		el: '#app',
-		data: {
-		}
+		el: '#app'
 	});
 </script>
 </html>
