@@ -7,15 +7,44 @@
 </head>
 <body>
 	<div id="app">
-		<comp-show></comp-show>
+		<h1>全局注册</h1>
+        <comp-show></comp-show>
+		<hr>
+		<h1>父->子组件通信: props</h1>
+		<comp-props message="ni hao"></comp-props>
+		<hr>
+		<h1>父->子组件通信: 动态props</h1>
+		<comp-props :message="message"></comp-props>
+		<hr>
+		<h1>子->父组件通信: 自定义事件</h1>
+		<hr>
+		<h1>内容分发: 插槽</h1>
+		<hr>
+		<h1>动态组件</h1>
+		<hr>
 	</div>
 </body>
 <script type="text/javascript">
 	Vue.component("comp-show", {
 		template: '<div>A custom component!</div>'
 	});
+	var compProps = {
+		props: ['message'],
+		template: '<div><p>Message from props: {{message}}</p><p>Counter: {{counter}}</p></div>',
+		data: function() {
+			return {
+				counter: 1
+			};
+		}
+	};
 	var vue = new Vue({
-		el: '#app'
+		el: '#app',
+		components: {
+			'comp-props': compProps
+		},
+		data: {
+			message: "Hello!"
+		}
 	});
 </script>
 </html>
