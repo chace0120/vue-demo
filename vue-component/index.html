@@ -17,10 +17,31 @@
 		<comp-props :message="message"></comp-props>
 		<hr>
 		<h1>子->父组件通信: 自定义事件</h1>
+		<btn-counter @count="countTotal"></btn-counter>
+		<btn-counter @count="countTotal"></btn-counter>
+		<p>Click Total: {{total}}</p>
 		<hr>
 		<h1>内容分发: 插槽</h1>
+		<h2>单个插槽</h2>
+		<comp-slot><p>This is parent content!</p></comp-slot>
+		<h2>单个插槽-默认信息</h2>
+		<comp-slot></comp-slot>
+		<h2>具名插槽</h2>
+		<comp-slot>
+			<h3 slot="header">This is header!</h3>
+			<h3 slot="footer">This is footer!</h3>
+		</comp-slot>
+		<h2>作用域插槽</h2>
+		<comp-scope-slot>
+			<template scope="props">
+				<p>This is parent content: {{props.text}}</p>
+			</template>
+			<h3 slot="header">This is header!</h3>
+			<h3 slot="footer">This is footer!</h3>
+		</comp-scope-slot>
 		<hr>
 		<h1>动态组件</h1>
+		<component :is="currentComp"></component>
 		<hr>
 	</div>
 </body>
@@ -28,6 +49,7 @@
 	Vue.component("comp-show", {
 		template: '<div>A custom component!</div>'
 	});
+
 	var compProps = {
 		props: ['message'],
 		template: '<div><p>Message from props: {{message}}</p><p>Counter: {{counter}}</p></div>',
@@ -37,13 +59,48 @@
 			};
 		}
 	};
+
+	var btnCounter = {
+		template: '<input type="button" v-model="counter" @click="countClickNums">', 
+		data: function() {
+			return {
+				counter: 0
+			};
+		},
+		methods: {
+			countClickNums: function() {
+				this.counter += 1;
+				this.$emit("count");
+			}
+		}
+	};
+
+	var compSlot = {
+		template: '<div><slot>This is default content!</slot><slot name="header"></slot><p>This is children component!</p><slot name="footer"></slot></div>', 
+	};
+
+	var compScopeSlot = {
+		template: '<div><slot text="this is scope slot!"></slot><slot name="header"></slot><p>This is children component!</p><slot name="footer"></slot></div>', 
+	};
+
 	var vue = new Vue({
 		el: '#app',
 		components: {
-			'comp-props': compProps
+			'comp-props': compProps,
+			'btn-counter': btnCounter,
+			'comp-slot': compSlot,
+			'comp-scope-slot': compScopeSlot
 		},
 		data: {
-			message: "Hello!"
+			message: "Hello!",
+			total: 0,
+			currentComp: 'btn-counter',
+			props: {}
+		},
+		methods: {
+			countTotal: function() {
+				this.total += 1;
+			}
 		}
 	});
 </script>
