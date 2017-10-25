@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-todo-list</title>
+	<script type="text/javascript" src="../asserts/vue.js"></script>
+</head>
+<body>
+	<div id="todo-list-example">
+		<div>
+			<input type="text" @keyup.enter="addNewItem" v-model="newTodoItemText" placeholder="Add a todo">
+		</div>
+		<ul>
+			<li is="TodoListItem" v-for="(item, index) in todoList" :key="item.id" :title="item.text" @remove="todoList.splice(index, 1)"></li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	Vue.component("TodoListItem", {
+		template: '<li>{{title}}<button @click="$emit(\'remove\')">X</button></li>',
+		props: ['title']
+	});
+
+	var vue = new Vue({
+		el: '#todo-list-example', 
+		data: {
+			todoList: [
+				{
+					id: 1,
+					text: '读书'
+				},
+				{
+					id: 2,
+					text: '锻炼身体'
+				},
+				{
+					id: 3,
+					text: '洗脸'
+				}
+			],
+			todoItemId: 4,
+			newTodoItemText: ''	
+		},
+		methods: {
+			addNewItem: function() {
+				this.todoList.push({
+					id: this.todoItemId++,
+					text: this.newTodoItemText
+				});
+				this.newTodoItemText = '';
+			}
+		}
+	});
+</script>
+</html>
